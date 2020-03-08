@@ -1,0 +1,9 @@
+"Phrases"
+{
+	"FakeRanks"		// Category name
+	{
+		"en"			"Fake ranks"
+		"ru"			"Фейк ранги"
+		"ua"			"Фейк ранги"
+	}
+}

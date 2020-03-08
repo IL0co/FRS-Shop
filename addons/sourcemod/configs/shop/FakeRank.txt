@@ -1,0 +1,26 @@
+"FakeRank"
+{
+	"preview_mode"		"1"			// 0 - превью выключено					| 0 - preview off
+									// 1 - берёт файл из FastDl (.png)		| 1 - takes a file from FastDl (.png)
+									// 2 - полная url ссылка на .png файл 	| 2 - full url link to .png file
+									
+
+	"5"								// Id таблички							| Id plates
+	{
+		"name"			"test1"		// Название в меню						| Menu Name
+		"price" 		"1"  		// Цена покупки							| Purchase price
+		"sell_price"	"1"			// Цена продажи							| Selling price
+		"duration"		"604800"	// Длительность в секундах				| Duration in seconds
+		"hide"			"0"			// Возможность купить					| Opportunity to buy
+		
+		"preview"		"https://i.imgur.com/NCRtPRJ.png"	// Если preview_mode = 2		| If preview_mode = 2
+	}
+	"85"	
+	{
+		"name"			"test2"
+		"price" 		"1"  
+		"sell_price"	"1"
+		"duration"		"604800"
+		"hide"			"0"
+	}
+}
