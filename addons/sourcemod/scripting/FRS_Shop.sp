@@ -1,6 +1,7 @@
 #include <sdktools>
 #include <FakeRank_Sync>
 #include <shop>
+#include <IFR>
 
 #pragma semicolon 1
 #pragma newdecls required
@@ -14,10 +15,10 @@ public Plugin myinfo =
 	url			= "https://github.com/IL0co"
 }
 
+
 #define IND "shop"
 #define CATEGORY_NAME "FakeRanks"
 #define ITEM_PREFIX "fakerank_"
-static char URL[256];
 int preview_mode;
 int iId[MAXPLAYERS+1];
 
@@ -31,15 +32,8 @@ public void OnPluginEnd()
 
 public void OnPluginStart()
 {
-	GetConVarString(FindConVar("sv_downloadurl"), URL, sizeof(URL));
-
-	if(URL[strlen(URL)-1] != '/')
-		Format(URL, sizeof(URL), "%s/", URL);
-
-	Format(URL, sizeof(URL), "%smaterials/panorama/images/icons/skillgroups/skillgroup", URL);
-
 	FRS_OnCoreLoaded();
-
+	
 	LoadCfg();
 	LoadTranslations("shop_fakerank.phrases");
 	Shop_Started();
@@ -150,7 +144,7 @@ public void OnPreviewItem(int client, CategoryId category_id, const char[] categ
 	ReplaceString(buff, sizeof(buff), ITEM_PREFIX, "", false);
 
 	if(preview_mode == 1)
-		PrintHintText(client, "<font> <img src='%s%s.png' /></font>", URL, buff);
+		IFR_ShowHintFakeRank(client, StringToInt(buff));
 
 	else if(preview_mode == 2)
 	{
