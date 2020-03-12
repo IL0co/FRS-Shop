@@ -27,6 +27,7 @@
 ## Requirements
 * [FRS Core](https://github.com/IL0co/FRS-Core)
 * [Shop Core](https://hlmod.ru/resources/shop-core-fork.284/)
+* [Intermediary FakeRank](https://hlmod.ru/resources/intermediary-fakerank.1568/)
 
 ## Filter key</font>
 * <font color='#FFA500'>**shop**</font>
