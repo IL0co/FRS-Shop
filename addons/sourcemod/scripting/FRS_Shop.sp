@@ -19,7 +19,7 @@ public Plugin myinfo =
 #define IND "shop"
 #define CATEGORY_NAME "FakeRanks"
 #define ITEM_PREFIX "fakerank_"
-int preview_mode;
+int preview_enable;
 int iId[MAXPLAYERS+1];
 
 KeyValues kv;
@@ -93,7 +93,7 @@ stock void LoadCfg()
 	if (!FileToKeyValues(kv, buffer))
 		SetFailState("Couldn't parse file %s", buffer);
 
-	preview_mode = kv.GetNum("preview_mode", 0);
+	preview_enable = view_as<bool>(kv.GetNum("PreviewEnable", 1));
 }
 
 stock void LoadShopFunctionals()
@@ -115,7 +115,7 @@ stock void LoadShopFunctionals()
 				kv.GetString("name", buffer, sizeof(buffer), item);
 				Shop_SetInfo(buffer, "", kv.GetNum("price", 5000), kv.GetNum("sell_price", 2500), Item_Togglable, kv.GetNum("duration", 86400));
 				
-				if(preview_mode)
+				if(preview_enable)
 					Shop_SetCallbacks(_, OnEquipItem, _, _, _, OnPreviewItem);
 				else 
 					Shop_SetCallbacks(_, OnEquipItem);
@@ -143,18 +143,8 @@ public void OnPreviewItem(int client, CategoryId category_id, const char[] categ
 	Format(buff, sizeof(buff), item);
 	ReplaceString(buff, sizeof(buff), ITEM_PREFIX, "", false);
 
-	if(preview_mode == 1)
+	if(preview_enable)
 		IFR_ShowHintFakeRank(client, StringToInt(buff));
-
-	else if(preview_mode == 2)
-	{
-		if(kv.JumpToKey(buff))
-		{
-			kv.GetString("preview", buff, sizeof(buff));
-			PrintHintText(client, "<font> <img src='%s' /></font>", buff);
-		}
-		kv.Rewind();
-	}
 }
 
 public ShopAction OnEquipItem(int client, CategoryId category_id, const char[] category, ItemId item_id, const char[] item, bool isOn, bool elapsed)
