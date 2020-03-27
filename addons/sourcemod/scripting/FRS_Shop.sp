@@ -36,7 +36,9 @@ public void OnPluginStart()
 	
 	LoadCfg();
 	LoadTranslations("shop_fakerank.phrases");
-	Shop_Started();
+	
+	if(Shop_IsStarted())
+		Shop_Started();
 
 	HookEvent("player_disconnect", Event_PlayerSpawn, EventHookMode_Pre);
 }
@@ -120,7 +122,10 @@ stock void LoadShopFunctionals()
 				else 
 					Shop_SetCallbacks(_, OnEquipItem);
 
+				kv.JumpToKey("Attributes", true);
 				Shop_KvCopySubKeysCustomInfo(kv);
+				kv.GoBack();	
+
 				Shop_EndItem();
 			}
 		}
